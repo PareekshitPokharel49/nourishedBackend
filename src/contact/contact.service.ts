@@ -44,7 +44,7 @@ export class ContactService {
     try {
       const info = await this.transporter.sendMail({
         from: this.configService.get<string>('SMTP_FROM', `"Contact Form" <${this.configService.get<string>('SMTP_USER')}>`),
-        to: email,
+        to: this.configService.get<string>('SMTP_RECIPIENT'),
         subject: `Contact Form Submission from ${firstname} ${lastname}`,
         html: emailContent,
       });
